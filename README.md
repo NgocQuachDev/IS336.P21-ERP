@@ -27,6 +27,7 @@ Local Directory Set Up
 
 ```sh
 mkdir odoo18
+cd odoo18
 ```
 
 - Create a postgres password file ("0123456789abc" = any password)
@@ -55,3 +56,29 @@ curl -Is http://localhost:8069
 ```sh
 docker compose down
 ```
+
+## Add Odoo Custom Module
+After build the composer, inside "oodo18":
+```sh
+--- odoo18
+    |--- addons
+          |------- <custom_module_folder>
+    |--- config
+          |------- odoo.conf
+```
+
+odoo.conf
+```sh
+[options]
+admin_passwd = <admin_pass>
+addons_path = /mnt/extra-addons
+```
+
+re-run the container
+```sh
+docker compose up -d
+```
+
+Remember to enable the odoo developer mode!!
+Can not see the module, try to Update the List in Apps.
+
